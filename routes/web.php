@@ -9,4 +9,4 @@ Route::get('/', function () {
 });
 
 Route::get('/messages', [MessageController::class, 'index']);
-Route::post('/messages', [MessageController::class, 'store']);   // 追加
+Route::post('/messages', [MessageController::class, 'store']);

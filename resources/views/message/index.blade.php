@@ -6,7 +6,6 @@
 </head>
 <body>
   <h3>Messages</h3>
-  <!-- 追加　ここから -->
   <div>
     <form action="/messages" method="post">
       @csrf
@@ -15,7 +14,6 @@
     </form>
   </div>
   <hr>
-  <!-- 追加　ここまで -->
   <ul>
     @foreach ($messages as $message)
     <li>{{ $message->body }}</li>

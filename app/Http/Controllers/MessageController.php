@@ -17,7 +17,6 @@ class MessageController extends Controller
         return view('message/index', ['messages' => $messages]);
     }
 
-    // 追加 ここから
     public function store(Request $request)
     {
         // リクエストからボディを取得し、保存
@@ -28,5 +27,4 @@ class MessageController extends Controller
         // 処理後、リダイレクト
         return redirect('/messages');
     }
-    // 追加 ここまで
 }

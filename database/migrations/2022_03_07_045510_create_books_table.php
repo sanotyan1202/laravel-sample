@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title', 100)->index();            // title列でインデックスを作成
             $table->string('author', 50);
             $table->integer('price');                         // priceという名前でint型のカラムを定義
-            $table->date('published_date')->nullable();       // published_dateという名前でdate型, nullableのカラムを定義
             $table->foreignId('category_id')->constrained();  // category_id'という名前でbigint型, foreign key制約のカラムを定義
             $table->timestamps();
         });

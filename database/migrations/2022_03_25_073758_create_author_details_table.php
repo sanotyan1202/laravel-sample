@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_author', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('book_id')->constrained();
+        Schema::create('author_details', function (Blueprint $table) {
             $table->foreignId('author_id')->constrained();
+            $table->string('email', 100);
+            $table->string('address', 100);
             $table->timestamps();
+
+            $table->primary('author_id');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_author');
+        Schema::dropIfExists('author_details');
     }
 };

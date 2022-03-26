@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // CategoriesTableSeederファイルをシーディングの対象にする
+        $this->call(CategoriesTableSeeder::class);        
+        // AuthorsTableSeederファイルをシーディングの対象にする
+        $this->call(AuthorsTableSeeder::class);
+        // BooksTableSeederファイルをシーディングの対象にする
+        $this->call(BooksTableSeeder::class);         // 追加
+        // AuthorBookTableSeederファイルをシーディングの対象にする
+        $this->call(AuthorBookTableSeeder::class);    // 追加
     }
 }

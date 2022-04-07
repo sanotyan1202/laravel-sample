@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('author_details', function (Blueprint $table) {
             $table->foreignId('author_id')->constrained();
-            $table->string('email', 100);
-            $table->string('address', 100);
+            $table->string('email', 100)->nullable();
+            $table->string('address', 100)->nullable();
             $table->timestamps();
 
             $table->primary('author_id');

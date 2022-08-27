@@ -5,18 +5,10 @@
     <th>価格</th>
   </tr>
   @foreach ($books as $book)
-    @if ($loop->even)
-      <tr style="background-color:#E0E0E0" >
-        <td>{{ $book->category->title }}</td>
-        <td>{{ $book->title }}</td>
-        <td>{{ $book->price }}</td>
-      </tr>
-    @else
-      <tr>
-        <td>{{ $book->category->title }}</td>
-        <td>{{ $book->title }}</td>
-        <td>{{ $book->price }}</td>
-      </tr>
-    @endif
+    <tr @if($loop->even) style="background-color:#E0E0E0" @endif >
+      <td>{{ $book->category->title }}</td>
+      <td><a href="books/{{ $book->id }}">{{ $book->title }}</a></td>
+      <td>{{ $book->price }}</td>
+    </tr>
   @endforeach
 </table>

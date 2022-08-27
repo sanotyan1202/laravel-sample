@@ -20,25 +20,27 @@ class BookController extends Controller
         return response()->view('book/index', ['books' => $books])
                          ->header('Content-Type', 'text/html')
                          ->header('Content-Encoding', 'UTF-8');
-}
+    }
 
     public function show($id)
     {
         // 書籍を1件取得
         $book = Book::findOrFail($id);
 
-        // 取得した書籍をレスポンスとして返す
-        return $book;
+        return view('book/show', compact('book'));   // 変更
     }
 
     public function create()
     {
-        // Viewでカテゴリ一覧を表示するために全権取得
+        // 空のBookオブジェクトを生成
+        $book = new Book();
+
+        // Viewでカテゴリ一覧を表示するために全件取得
         $categories = Category::all();
 
         // "book/create.blade.php" Viewの呼び出し
         // categoriesという名前でカテゴリ一覧をViewに渡す
-        return view('book/create', ['categories' => $categories]);
+        return view('book/create', compact('categories', 'book'));
     }
 
     public function store(BookPostRequest $request)
@@ -57,5 +59,15 @@ class BookController extends Controller
         // 登録完了後 'books/'にリダイレクトする
         return redirect('books')->with('info', $book->title . 'を追加しました。');
     }
+
+    public function edit($id)
+    {
+        // カテゴリ一覧を表示するために全件取得
+        $categories = Category::all();
+
+        // 更新対象の書籍を取得
+        $book = Book::findOrFail($id);
+
+        return view('book/edit', compat('categories', 'book'));
+    }
 }
-    

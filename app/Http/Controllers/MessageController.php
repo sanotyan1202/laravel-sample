@@ -10,7 +10,7 @@ class MessageController extends Controller
 {
     public function index()
     {
-        // Messagesテーブルのレコードを全権取得
+        // Messagesテーブルのレコードを全件取得
         $messages = Message::all();
 
         // messagesというキーで、Viewへ渡す

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookPostRequest;
+use App\Http\Requests\BookPutRequest;
 use App\Models\Book;
 use App\Models\Category;
 
@@ -68,6 +69,35 @@ class BookController extends Controller
         // 更新対象の書籍を取得
         $book = Book::findOrFail($id);
 
-        return view('book/edit', compat('categories', 'book'));
+        return view('book/edit', compact('categories', 'book'));
+    }
+
+    public function update(BookPutRequest $request, $id)
+    {
+        // 更新対象の書籍を取得
+        $book = Book::findOrFail($id);
+
+        // リクエストオブジェクトからパラメータ（入力情報）を取得し、bookオブジェクトに格納する
+        $book->category_id = $request->category_id;  // 選択されたカテゴリのID
+        $book->title = $request->title;              // 入力された書籍名
+        $book->price = $request->price;              // 入力された価格
+
+        // 保存
+        $book->update();
+
+        // 更新完了後 'books/'にリダイレクトする
+        return redirect('books')->with('info', $book->title . 'を変更しました。');
+    }
+
+    public function destroy($id)
+    {
+        // 削除対象の書籍を取得
+        $book = Book::findOrFail($id);
+
+        // 削除
+        $book->delete(); 
+
+        // 削除完了後 'books/'にリダイレクトする
+        return redirect('books')->with('info', $book->title . 'を削除しました。');
     }
 }
